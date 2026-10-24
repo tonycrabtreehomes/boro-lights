@@ -119,6 +119,13 @@ h1 em{font-family:var(--display);font-style:normal;font-weight:400;color:var(--g
 .bigstars{color:var(--gold);font-size:16px;letter-spacing:1px}.bigstars .off{color:#3a5660}
 .empty{color:var(--muted);padding:18px;border:1px dashed var(--line);border-radius:14px}
 @media (max-width:620px){.toprow{grid-template-columns:auto minmax(0,1fr)}.topscore{text-align:left;grid-column:2}.toprow .go{grid-column:1/-1}}
+.dname{font-size:12.5px;font-weight:600;color:var(--gold);letter-spacing:.02em}
+.lead{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:10px}
+.lead h4{margin:0;font-size:16px}.lead p{margin:0}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.lead label{display:grid;gap:4px;font-size:12.5px;color:var(--muted)}
+.lead input,.lead select,.lead textarea{font:inherit;font-size:15px;color:var(--snow);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:9px 10px;min-width:0;width:100%}
+.lrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}#leadMsg{font-size:13.5px;color:var(--snow)}
 .panel{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;align-content:start}
 .box h3{margin:0;font-size:16px}
@@ -160,7 +167,6 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
 
 <canvas id="snow" aria-hidden="true"></canvas>
 <div class="lights" aria-hidden="true"><svg viewBox="0 0 1000 34" preserveAspectRatio="xMidYMid slice"><path d="M0,8 Q1,18 42,8 Q42,18 83,8 Q84,18 125,8 Q126,18 167,8 Q168,18 208,8 Q209,18 250,8 Q251,18 292,8 Q292,18 333,8 Q334,18 375,8 Q376,18 417,8 Q418,18 458,8 Q459,18 500,8 Q501,18 542,8 Q542,18 583,8 Q584,18 625,8 Q626,18 667,8 Q668,18 708,8 Q709,18 750,8 Q751,18 792,8 Q792,18 833,8 Q834,18 875,8 Q876,18 917,8 Q918,18 958,8 Q959,18 1000,8" fill="none" stroke="#3d4f59" stroke-width="1.5"/><g class="bulb" style="animation-delay:0.00s"><rect x="18.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="20.8" cy="23" rx="4.5" ry="7" fill="#e5495d"/><circle cx="20.8" cy="23" r="11" fill="#e5495d" opacity=".18"/></g><g class="bulb" style="animation-delay:0.37s"><rect x="60.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="62.5" cy="23" rx="4.5" ry="7" fill="#f2c14e"/><circle cx="62.5" cy="23" r="11" fill="#f2c14e" opacity=".18"/></g><g class="bulb" style="animation-delay:0.74s"><rect x="101.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="104.2" cy="23" rx="4.5" ry="7" fill="#46a77f"/><circle cx="104.2" cy="23" r="11" fill="#46a77f" opacity=".18"/></g><g class="bulb" style="animation-delay:1.11s"><rect x="143.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="145.8" cy="23" rx="4.5" ry="7" fill="#8fd3ff"/><circle cx="145.8" cy="23" r="11" fill="#8fd3ff" opacity=".18"/></g><g class="bulb" style="animation-delay:1.48s"><rect x="185.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="187.5" cy="23" rx="4.5" ry="7" fill="#e5495d"/><circle cx="187.5" cy="23" r="11" fill="#e5495d" opacity=".18"/></g><g class="bulb" style="animation-delay:1.85s"><rect x="226.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="229.2" cy="23" rx="4.5" ry="7" fill="#f2c14e"/><circle cx="229.2" cy="23" r="11" fill="#f2c14e" opacity=".18"/></g><g class="bulb" style="animation-delay:2.22s"><rect x="268.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="270.8" cy="23" rx="4.5" ry="7" fill="#46a77f"/><circle cx="270.8" cy="23" r="11" fill="#46a77f" opacity=".18"/></g><g class="bulb" style="animation-delay:2.59s"><rect x="310.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="312.5" cy="23" rx="4.5" ry="7" fill="#8fd3ff"/><circle cx="312.5" cy="23" r="11" fill="#8fd3ff" opacity=".18"/></g><g class="bulb" style="animation-delay:2.96s"><rect x="351.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="354.2" cy="23" rx="4.5" ry="7" fill="#e5495d"/><circle cx="354.2" cy="23" r="11" fill="#e5495d" opacity=".18"/></g><g class="bulb" style="animation-delay:0.33s"><rect x="393.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="395.8" cy="23" rx="4.5" ry="7" fill="#f2c14e"/><circle cx="395.8" cy="23" r="11" fill="#f2c14e" opacity=".18"/></g><g class="bulb" style="animation-delay:0.70s"><rect x="435.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="437.5" cy="23" rx="4.5" ry="7" fill="#46a77f"/><circle cx="437.5" cy="23" r="11" fill="#46a77f" opacity=".18"/></g><g class="bulb" style="animation-delay:1.07s"><rect x="476.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="479.2" cy="23" rx="4.5" ry="7" fill="#8fd3ff"/><circle cx="479.2" cy="23" r="11" fill="#8fd3ff" opacity=".18"/></g><g class="bulb" style="animation-delay:1.44s"><rect x="518.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="520.8" cy="23" rx="4.5" ry="7" fill="#e5495d"/><circle cx="520.8" cy="23" r="11" fill="#e5495d" opacity=".18"/></g><g class="bulb" style="animation-delay:1.81s"><rect x="560.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="562.5" cy="23" rx="4.5" ry="7" fill="#f2c14e"/><circle cx="562.5" cy="23" r="11" fill="#f2c14e" opacity=".18"/></g><g class="bulb" style="animation-delay:2.18s"><rect x="601.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="604.2" cy="23" rx="4.5" ry="7" fill="#46a77f"/><circle cx="604.2" cy="23" r="11" fill="#46a77f" opacity=".18"/></g><g class="bulb" style="animation-delay:2.55s"><rect x="643.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="645.8" cy="23" rx="4.5" ry="7" fill="#8fd3ff"/><circle cx="645.8" cy="23" r="11" fill="#8fd3ff" opacity=".18"/></g><g class="bulb" style="animation-delay:2.92s"><rect x="685.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="687.5" cy="23" rx="4.5" ry="7" fill="#e5495d"/><circle cx="687.5" cy="23" r="11" fill="#e5495d" opacity=".18"/></g><g class="bulb" style="animation-delay:0.29s"><rect x="726.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="729.2" cy="23" rx="4.5" ry="7" fill="#f2c14e"/><circle cx="729.2" cy="23" r="11" fill="#f2c14e" opacity=".18"/></g><g class="bulb" style="animation-delay:0.66s"><rect x="768.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="770.8" cy="23" rx="4.5" ry="7" fill="#46a77f"/><circle cx="770.8" cy="23" r="11" fill="#46a77f" opacity=".18"/></g><g class="bulb" style="animation-delay:1.03s"><rect x="810.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="812.5" cy="23" rx="4.5" ry="7" fill="#8fd3ff"/><circle cx="812.5" cy="23" r="11" fill="#8fd3ff" opacity=".18"/></g><g class="bulb" style="animation-delay:1.40s"><rect x="851.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="854.2" cy="23" rx="4.5" ry="7" fill="#e5495d"/><circle cx="854.2" cy="23" r="11" fill="#e5495d" opacity=".18"/></g><g class="bulb" style="animation-delay:1.77s"><rect x="893.3" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="895.8" cy="23" rx="4.5" ry="7" fill="#f2c14e"/><circle cx="895.8" cy="23" r="11" fill="#f2c14e" opacity=".18"/></g><g class="bulb" style="animation-delay:2.14s"><rect x="935.0" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="937.5" cy="23" rx="4.5" ry="7" fill="#46a77f"/><circle cx="937.5" cy="23" r="11" fill="#46a77f" opacity=".18"/></g><g class="bulb" style="animation-delay:2.51s"><rect x="976.7" y="13" width="5" height="4" rx="1" fill="#5b6b74"/><ellipse cx="979.2" cy="23" rx="4.5" ry="7" fill="#8fd3ff"/><circle cx="979.2" cy="23" r="11" fill="#8fd3ff" opacity=".18"/></g></svg></div>
-<div class="demo">Example page, built from the 2025 addresses on your "Xmas Lights" tab. Houses marked NO are left out. The musical/static labels come from last year's map. Road data © OpenStreetMap contributors. Ratings here save for you and people you share this page with; on your website, the public's ratings would go into a Google Sheet.</div>
 
 <div class="wrap">
 <header>
@@ -231,6 +237,18 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
       <span class="copyrow"><code id="em2">tony@crabtreehomestn.com</code><button class="btn" data-copy="em2">Copy</button></span>
       <a class="btn primary" href="https://www.crabtreehomestn.com" target="_blank" rel="noopener">crabtreehomestn.com</a>
     </div>
+    <form id="leadForm" class="lead" novalidate>
+      <h4>Thinking about buying or selling in the next year?</h4>
+      <p>Leave your info and I'll reach out with some free guidance on what the market likely holds for you. No pressure.</p>
+      <div class="lgrid">
+        <label for="ln">Name<input id="ln" name="ln" autocomplete="name" required></label>
+        <label for="lp">Phone<input id="lp" name="lp" type="tel" autocomplete="tel"></label>
+        <label for="le">Email<input id="le" name="le" type="email" autocomplete="email"></label>
+        <label for="lk">I'm thinking about<select id="lk" name="lk"><option>Buying</option><option>Selling</option><option>Both</option><option>Just curious</option></select></label>
+      </div>
+      <label for="lnotes">Anything else?<textarea id="lnotes" name="lnotes" rows="2"></textarea></label>
+      <div class="lrow"><button class="btn primary" type="submit">Send to Tony</button><span id="leadMsg" role="status"></span></div>
+    </form>
   </div>
 </section>
 <footer>
@@ -241,8 +259,10 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
 
 <script>
 /* ===== DATA: the one list everything is built from ===== */
-const UPDATED = "Oct 23";
-const H = [
+const API="https://script.google.com/macros/s/AKfycbyzSNgTxU_FqSe_oGFf5buTR7yX4UnmajDvgz_kEYmobSp0XMeyXFsFdK17Uz8tG2Ky/exec";
+let UPDATED="";
+/* Backup copy of the list, used only if the Google Sheet can't be reached */
+const FALLBACK = [
  // [address, city, zip, lat, lng, type m/s/u, zone, showLink?]
  ["7922 Spire St","Murfreesboro","37129",35.99019,-86.40647,"s","north"],
  ["107 Cannock Ct","Murfreesboro","37129",35.98643,-86.40647,"s","north"],
@@ -286,18 +306,27 @@ const H = [
  ["648 Laurel Ln","Murfreesboro","37127",35.73447,-86.39507,"s","south"],
  ["1009 Stratus Dr","Murfreesboro","37127",35.75196,-86.31732,"m","south"],
  ["103 Gateway Dr","Murfreesboro","37127",35.78053,-86.32080,"s","south"],
- ["416 Bell Buckle Wartrace Rd","Bell Buckle","37020",35.57535,-86.35720,"m","drive"]
-].map((r,i)=>({id:i,key:(r[0]+"-"+r[2]).toLowerCase().replace(/[^a-z0-9]+/g,"-"),addr:r[0],city:r[1],zip:r[2],lat:r[3],lng:r[4],type:r[5],zone:r[6],show:r[7]||null,
-  full:`${r[0]}, ${r[1]}, TN ${r[2]}`}));
+ ["416 Bell Buckle Wartrace Rd","Bell Buckle","37020",35.57535,-86.35720,"m","drive"]].filter(r=>r[5]!=="u").map(r=>({addr:r[0],city:r[1],zip:r[2],lat:r[3],lng:r[4],type:r[5],area:{north:"North",west:"West",central:"Northfield & Ithaca",east:"East",southwest:"Southwest",south:"South",drive:"Worth the drive"}[r[6]],show:r[7]||"",name:""}));
+let H=[];
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"";
+function setHouses(list){
+  H=list.filter(h=>isFinite(h.lat)&&isFinite(h.lng)).map((h,i)=>({id:i,key:(h.addr+"-"+h.zip).toLowerCase().replace(/[^a-z0-9]+/g,"-"),
+    addr:h.addr,city:h.city,zip:String(h.zip),lat:+h.lat,lng:+h.lng,type:h.type==="m"?"m":"s",zone:h.area||"",show:safeUrl(h.show),name:h.name||"",
+    full:`${h.addr}, ${h.city}, TN ${h.zip}`}));
+  // new areas typed in the sheet get their own loop; blank areas join the nearest house's loop
+  H.forEach(h=>{if(h.zone&&!ZONES[h.zone])ZONES[h.zone]={name:h.zone}});
+  H.filter(h=>!h.zone).forEach(h=>{const o=H.filter(x=>x.zone);if(o.length)h.zone=o.reduce((a,b)=>dist(a,h)<dist(b,h)?a:b).zone;else h.zone="North"});
+}
 
 const ZONES = {
-  north:{name:"North · Walter Hill & Lascassas"},
-  west:{name:"West · Smyrna & Blackman"},
-  central:{name:"Northfield & Ithaca"},
-  east:{name:"East side"},
-  southwest:{name:"Southwest · Rockvale"},
-  south:{name:"South · Christiana"},
-  drive:{name:"Worth the drive"}
+  "North":{name:"North · Walter Hill & Lascassas"},
+  "West":{name:"West · Smyrna & Blackman"},
+  "Northfield & Ithaca":{name:"Northfield & Ithaca"},
+  "East":{name:"East side"},
+  "Southwest":{name:"Southwest · Rockvale"},
+  "South":{name:"South · Christiana"},
+  "Worth the drive":{name:"Worth the drive"}
 };
 const TOWNS=[["Murfreesboro",35.8456,-86.3903,1],["Smyrna",35.9828,-86.5186],["Rockvale",35.7600,-86.5300],["Christiana",35.7092,-86.3989],
  ["Lascassas",35.9260,-86.3090],["Walter Hill",35.9450,-86.4000],["Blackman",35.8700,-86.4850],["↓ Bell Buckle, 25 min south",35.712,-86.32]];
@@ -312,7 +341,7 @@ const gmap=h=>`https://www.google.com/maps/dir/?api=1&destination=${enc(h.full)}
 const amap=h=>`https://maps.apple.com/?daddr=${enc(h.full)}&dirflg=d`;
 const waze=h=>`https://waze.com/ul?ll=${h.lat},${h.lng}&navigate=yes`;
 const dist=(a,b)=>{const k=Math.cos(35.85*Math.PI/180);return Math.hypot((a.lat-b.lat),(a.lng-b.lng)*k)};
-const typeName={m:"Music show",s:"Static display",u:"New this year"};
+const typeName={m:"Music show",s:"Light display"};
 
 let seen=new Set();
 try{seen=new Set(JSON.parse(localStorage.getItem("boro-seen")||"[]"))}catch(e){}
@@ -363,7 +392,7 @@ function drawMap(){
   // pins
   H.forEach(h=>{
     const [x,y]=px(h.lat,h.lng);
-    const g=el("g",{class:"pin",tabindex:0,role:"button","aria-label":h.full,"data-id":h.id});
+    const g=el("g",{class:"pin",tabindex:0,role:"button","aria-label":(h.name?h.name+", ":"")+h.full,"data-id":h.id});
     const grad=h.type==="m"?"gG":h.type==="s"?"gI":"gU";
     const BC=["#e5495d","#46a77f","#8fd3ff","#f2c14e"], col=h.type==="m"?"#f2c14e":h.type==="u"?"#eef3f1":BC[h.id%4];
     g.dataset.x=x;g.dataset.y=y;
@@ -411,9 +440,9 @@ function card(h,n){
   const c=document.createElement("article");
   c.className="card"+(seen.has(h.key)?" seen":"")+(selected===h.id?" sel":"");c.id="h"+h.id;
   c.innerHTML=`<div class="top"><div class="num ${h.type}">${n}</div>
-    <div style="min-width:0"><div class="addr">${h.addr}</div><div class="city">${h.city}, TN ${h.zip}</div></div></div>
-    <div class="tags"><span class="tag ${h.type}">${typeName[h.type]}</span><span class="tag">${ZONES[h.zone].name}</span>${h.show?`<a class="tag show" href="${h.show}" target="_blank" rel="noopener">Show page ↗</a>`:""}</div>
-    <div class="rate" role="group" aria-label="Rate ${h.addr}">${[1,2,3,4,5].map(v=>`<button class="star${(mine[h.key]||0)>=v?" on":""}" data-v="${v}" aria-label="${v} star${v>1?"s":""}" aria-pressed="${mine[h.key]===v}">★</button>`).join("")}<span class="avg">${avgText(h.key)}</span></div>
+    <div style="min-width:0">${h.name?`<div class="dname">${esc(h.name)}</div>`:""}<div class="addr">${esc(h.addr)}</div><div class="city">${esc(h.city)}, TN ${esc(h.zip)}</div></div></div>
+    <div class="tags"><span class="tag ${h.type}">${typeName[h.type]}</span><span class="tag">${esc((ZONES[h.zone]||{name:h.zone}).name)}</span>${h.show?`<a class="tag show" href="${esc(h.show)}" target="_blank" rel="noopener">Show page ↗</a>`:""}</div>
+    <div class="rate" role="group" aria-label="Rate ${esc(h.addr)}">${[1,2,3,4,5].map(v=>`<button class="star${(mine[h.key]||0)>=v?" on":""}" data-v="${v}" aria-label="${v} star${v>1?"s":""}" aria-pressed="${mine[h.key]===v}">★</button>`).join("")}<span class="avg">${avgText(h.key)}</span></div>
     <div class="go"><a class="btn primary" href="${gmap(h)}" target="_blank" rel="noopener">Google Maps</a>
       <a class="btn" href="${amap(h)}" target="_blank" rel="noopener">Apple Maps</a>
       <a class="btn" href="${waze(h)}" target="_blank" rel="noopener">Waze</a>
@@ -437,7 +466,7 @@ function render(){
   if(zone){const st=orderZone(zone);
     rb.innerHTML=`<div class="routebox"><h3>${ZONES[zone].name}: ${st.length} stops</h3>
     <p>Starts at the stop closest to the Square, then goes to the nearest house each time. Opens in Google Maps with every stop loaded.</p>
-    <ol>${st.map(s=>`<li>${s.addr}</li>`).join("")}</ol>
+    <ol>${st.map(s=>`<li>${esc(s.addr)}</li>`).join("")}</ol>
     <div class="go"><a class="btn red" href="${routeURL(st)}" target="_blank" rel="noopener">Start this loop in Google Maps</a></div></div>`;
   } else rb.innerHTML="";
   paintPins();
@@ -448,45 +477,49 @@ function select(id,scroll){selected=id;paintPins();document.querySelectorAll(".c
 /* ===== chips ===== */
 function chips(){
   const f=$("#filters");f.innerHTML="";
-  [["all","All houses"],["m","Music shows"],["s","Static displays"],["show","Has a show page"],["todo","Haven't seen yet"]].forEach(([k,l])=>{
+  [["all","All houses"],["m","Music shows"],["s","Light displays"],["show","Has a show page"],["todo","Haven't seen yet"]].forEach(([k,l])=>{
     const b=document.createElement("button");b.className="chip";b.textContent=l;b.setAttribute("aria-pressed",filter===k);
     b.onclick=()=>{filter=k;chips();render()};f.appendChild(b)});
   const r=$("#routes");r.innerHTML="";
   const none=document.createElement("button");none.className="chip route-chip";none.textContent="Everywhere";none.setAttribute("aria-pressed",!zone);
   none.onclick=()=>{zone=null;chips();drawMap();render()};r.appendChild(none);
-  Object.entries(ZONES).forEach(([k,z])=>{const n=H.filter(h=>h.zone===k).length;
+  Object.entries(ZONES).forEach(([k,z])=>{const n=H.filter(h=>h.zone===k).length;if(!n)return;
     const b=document.createElement("button");b.className="chip route-chip";b.textContent=`${z.name} (${n})`;b.setAttribute("aria-pressed",zone===k);
     b.onclick=()=>{zone=k;chips();drawMap();render()};r.appendChild(b)});
 }
 function stats(){
   const m=H.filter(h=>h.type==="m").length,s=H.filter(h=>h.type==="s").length,u=H.length-m-s;
-  $("#stats").innerHTML=`<span><b>${H.length}</b> houses</span><span><span class="dot m"></span><b>${m}</b> music shows</span><span><span class="dot s"></span><b>${s}</b> static</span>${u?`<span><b>${u}</b> new</span>`:""}<span>Updated ${UPDATED}</span>`;
+  $("#stats").innerHTML=`<span><b>${H.length}</b> houses</span><span><span class="dot m"></span><b>${m}</b> music shows</span><span><span class="dot s"></span><b>${s}</b> light displays</span>${UPDATED?`<span>Updated ${UPDATED}</span>`:""}`;
 }
 document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",async()=>{
   const t=document.getElementById(b.dataset.copy).textContent;
   try{await navigator.clipboard.writeText(t);b.textContent="Copied"}catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById(b.dataset.copy));getSelection().removeAllRanges();getSelection().addRange(r);b.textContent="Selected"}
   setTimeout(()=>b.textContent="Copy",1500)}));
 
-/* ===== ratings ===== */
-let mine={}, others={}, myId=null, db=null, writing=Promise.resolve();
+/* ===== ratings (saved to the Google Sheet) ===== */
+let mine={}, serverTotals={}, voter="";
 try{mine=JSON.parse(localStorage.getItem("boro-rate")||"{}")}catch(e){}
-function totals(){const t={};const add=r=>{for(const k in r){const v=+r[k];if(v>=1&&v<=5){(t[k]=t[k]||{sum:0,n:0});t[k].sum+=v;t[k].n++}}};
-  for(const id in others) if(id!==myId) add(others[id]); add(mine); return t}
-function avgText(k){const t=totals()[k];return t?`${(t.sum/t.n).toFixed(1)} · ${t.n} rating${t.n>1?"s":""}`:"Be the first to rate"}
+try{voter=localStorage.getItem("boro-voter")||"";if(!voter){voter="v"+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem("boro-voter",voter)}}catch(e){voter="v"+Math.random().toString(36).slice(2)}
+function totals(){return serverTotals}
+function avgText(k){const t=serverTotals[k];return t&&t.n?`${(t.sum/t.n).toFixed(1)} · ${t.n} rating${t.n>1?"s":""}`:"Be the first to rate"}
+function post(body){return fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(r=>r.json())}
 function rate(k,v){
-  if(mine[k]===v) delete mine[k]; else mine[k]=v;
+  const old=mine[k]; const nv=old===v?0:v;
+  const t=serverTotals[k]=serverTotals[k]||{sum:0,n:0};
+  if(old){t.sum-=old;t.n--} if(nv){t.sum+=nv;t.n++} if(!t.n)delete serverTotals[k];
+  if(nv) mine[k]=nv; else delete mine[k];
   try{localStorage.setItem("boro-rate",JSON.stringify(mine))}catch(e){}
-  if(db&&myId){const body={r:{...mine}};writing=writing.then(()=>db.doc("ratings/"+myId).set(body)).catch(()=>{})}
+  post({action:"rate",voter,house:k,stars:nv}).catch(()=>{});
   render();renderTop();
 }
 function renderTop(){
   const t=totals(), C=3, M=3.5;
-  const rows=H.filter(h=>t[h.key]).map(h=>({h,avg:t[h.key].sum/t[h.key].n,n:t[h.key].n,score:(C*M+t[h.key].sum)/(C+t[h.key].n)})).sort((a,b)=>b.score-a.score);
+  const rows=H.filter(h=>t[h.key]&&t[h.key].n).map(h=>({h,avg:t[h.key].sum/t[h.key].n,n:t[h.key].n,score:(C*M+t[h.key].sum)/(C+t[h.key].n)})).sort((a,b)=>b.score-a.score);
   const ol=$("#toplist");
   if(!rows.length){ol.innerHTML=`<li class="empty">No ratings yet. Open <b>Map &amp; list</b> and tap the stars on a house you've visited.</li>`;return}
   ol.innerHTML=rows.slice(0,25).map((r,i)=>`<li class="toprow${i<3?" podium":""}">
     <span class="rank">${i+1}</span>
-    <div class="topmain"><div class="addr">${r.h.addr}</div><div class="city">${r.h.city} · ${typeName[r.h.type]}</div></div>
+    <div class="topmain">${r.h.name?`<div class="dname">${esc(r.h.name)}</div>`:""}<div class="addr">${esc(r.h.addr)}</div><div class="city">${esc(r.h.city)} · ${typeName[r.h.type]}</div></div>
     <div class="topscore"><span class="bigstars" aria-hidden="true">${"★".repeat(Math.round(r.avg))}<span class="off">${"★".repeat(5-Math.round(r.avg))}</span></span><span>${r.avg.toFixed(1)} · ${r.n} rating${r.n>1?"s":""}</span></div>
     <div class="go"><a class="btn primary" href="${gmap(r.h)}" target="_blank" rel="noopener">Go</a><button class="btn" data-show="${r.h.id}">On map</button></div></li>`).join("");
   ol.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{showTab("map");filter="all";zone=null;chips();drawMap();render();select(+b.dataset.show,true)});
@@ -495,24 +528,34 @@ function showTab(v){$("#viewMap").hidden=v!=="map";$("#viewTop").hidden=v!=="top
   $("#tabMap").setAttribute("aria-pressed",v==="map");$("#tabTop").setAttribute("aria-pressed",v==="top");if(v==="top")renderTop()}
 $("#tabMap").onclick=()=>showTab("map");$("#tabTop").onclick=()=>showTab("top");
 
-(async()=>{
-  if(!window.claude?.use) return;
-  try{
-    const [d,u]=await Promise.all([claude.use("db"),claude.use("user")]);
-    if(!d) return; db=d; myId=u?await u.id():null;
-    if(myId){const mineDoc=await db.doc("ratings/"+myId).get().catch(()=>null);
-      if(mineDoc?.exists){const r=mineDoc.data().r||{};const merged={...r,...mine};mine=merged;
-        if(JSON.stringify(merged)!==JSON.stringify(r)) writing=writing.then(()=>db.doc("ratings/"+myId).set({r:{...mine}})).catch(()=>{})}
-      else if(Object.keys(mine).length) writing=writing.then(()=>db.doc("ratings/"+myId).set({r:{...mine}})).catch(()=>{})}
-    db.collection("ratings").onSnapshot(snap=>{const o={};snap.docs.forEach(doc=>{o[doc.id]=doc.data()?.r||{}});others=o;render();renderTop()},()=>{});
-  }catch(e){}
-})();
+/* ===== lead form ===== */
+$("#leadForm").addEventListener("submit",async e=>{
+  e.preventDefault();const f=e.target, msg=$("#leadMsg"), btn=f.querySelector("button[type=submit]");
+  const d={action:"lead",name:f.ln.value.trim(),phone:f.lp.value.trim(),email:f.le.value.trim(),kind:f.lk.value,notes:f.lnotes.value.trim()};
+  if(!d.name||(!d.phone&&!d.email)){msg.textContent="Add your name and a phone number or email so I can reach you.";return}
+  btn.disabled=true;msg.textContent="Sending…";
+  try{const r=await post(d);if(!r.ok)throw 0;f.reset();msg.textContent="Thanks! I'll be in touch soon. Merry Christmas!"}
+  catch(err){msg.textContent="That didn't go through. You can call or text me at 615-815-4283."}
+  btn.disabled=false;
+});
 
+/* ===== load from the sheet ===== */
+function boot(){stats();chips();drawMap();render();renderTop();}
+setHouses(FALLBACK);
+fetch(API).then(r=>r.json()).then(j=>{
+  if(!j.ok||!j.houses||!j.houses.length) return;
+  serverTotals=j.totals||{};
+  try{UPDATED=new Date(j.updated).toLocaleDateString("en-US",{month:"short",day:"numeric"})}catch(e){}
+  const sel=selected!=null&&H[selected]?H[selected].key:null;
+  setHouses(j.houses); selected=sel?(H.find(h=>h.key===sel)||{}).id??null:null;
+  if(zone&&!H.some(h=>h.zone===zone))zone=null;
+  boot();
+}).catch(()=>{});
 
 (function(){const c=document.getElementById("snow");if(!c||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
 const x=c.getContext("2d");let W,H,f=[];const R=()=>{W=c.width=innerWidth;H=c.height=innerHeight;f=Array.from({length:Math.round(W*H/22000)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.5,s:Math.random()*.4+.15,d:Math.random()*Math.PI*2}))};
 R();addEventListener("resize",R);(function t(){x.clearRect(0,0,W,H);x.fillStyle="#eef3f1";f.forEach(p=>{p.y+=p.s;p.d+=.01;p.x+=Math.sin(p.d)*.25;if(p.y>H){p.y=-3;p.x=Math.random()*W}x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});requestAnimationFrame(t)})()})();
-addEventListener("resize",()=>setVB());setVB();stats();chips();drawMap();render();renderTop();
+addEventListener("resize",()=>setVB());setVB();boot();
 if(location.hash==="#top")showTab("top");
 </script>
 
