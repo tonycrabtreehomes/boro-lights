@@ -393,7 +393,6 @@ function visible(h){
   if(filter==="s") return h.type==="s";
   if(filter==="show") return !!h.show;
   if(filter==="todo") return !seen.has(h.key);
-  if(filter==="on") return isOn(h);
   return true;
 }
 function paintPins(){
@@ -453,7 +452,7 @@ function select(id,scroll){selected=id;paintPins();document.querySelectorAll(".c
 /* ===== chips ===== */
 function chips(){
   const f=$("#filters");f.innerHTML="";
-  [["all","All houses"],["on","Lit up tonight"],["m","Music shows"],["s","Light displays"],["show","Has a show page"],["todo","Haven't seen yet"]].forEach(([k,l])=>{
+  [["all","All houses"],["m","Music shows"],["todo","Haven't seen yet"],["show","Has a show page"],["s","Static light displays"]].forEach(([k,l])=>{
     const b=document.createElement("button");b.className="chip";b.textContent=l;b.setAttribute("aria-pressed",filter===k);
     b.onclick=()=>{filter=k;chips();render()};f.appendChild(b)});
   const r=$("#routes");r.innerHTML="";
