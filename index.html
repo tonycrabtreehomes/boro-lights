@@ -164,6 +164,49 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
 .agent{background-image:radial-gradient(circle at 100% 0,rgba(229,73,93,.12),transparent 40%),radial-gradient(circle at 0 100%,rgba(70,167,127,.10),transparent 40%)}
 .mapcard{box-shadow:0 0 0 1px rgba(229,73,93,.08),0 18px 50px -30px rgba(229,73,93,.45)}
 @media (prefers-reduced-motion:reduce){#snow{display:none}}
+
+.tabs{overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;white-space:nowrap}
+@media (max-width:480px){.tab{padding:10px 9px;font-size:14px}}
+.startrow{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;font-size:13px;margin-top:14px}
+.startrow .chip[aria-pressed="true"]{background:var(--ice);border-color:var(--ice);color:#0e1d26}
+#startMsg{color:var(--muted);font-size:12.5px}
+.chip.trip-chip{border-color:var(--gold)}
+.chip.trip-chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1b1405}
+.away{font-size:12px;color:var(--ice);font-weight:600;margin-top:2px}
+.btn.add{border-style:dashed}
+.btn.add.in{background:rgba(242,193,78,.16);border:1px solid var(--gold);color:var(--gold)}
+.eta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px}
+.eta b{color:var(--gold);font-variant-numeric:tabular-nums}
+.legs{display:flex;flex-wrap:wrap;gap:8px}
+.routebox.trip{border-color:var(--gold)}
+.routebox .tl{list-style:none;padding:0;columns:1;display:grid;gap:6px}
+.tl li{display:flex;align-items:center;gap:10px;background:var(--panel-2);border-radius:10px;padding:6px 8px 6px 10px}
+.tl .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;font-weight:700;background:var(--gold);color:#1b1405;flex:0 0 auto}
+.tl .x{margin-left:auto;background:none;border:0;color:var(--muted);font-size:18px;cursor:pointer;padding:2px 6px}
+.small{font-size:12.5px;color:var(--muted)}
+.tripbar{position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:center;gap:12px;
+  background:var(--panel);border:1px solid var(--gold);border-radius:999px;padding:8px 8px 8px 16px;box-shadow:0 10px 30px -10px #000;max-width:calc(100% - 32px);font-size:14px;white-space:nowrap}
+.tripbar[hidden]{display:none}
+body{padding-bottom:90px}
+.tripbar .btn{border-radius:999px}
+.pin.intrip .core{filter:drop-shadow(0 0 5px var(--gold)) drop-shadow(0 0 10px var(--gold))}
+.evlist{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.ev{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px;align-content:start}
+.ev.now{border-color:var(--pine)}
+.ev h3{margin:0;font-size:16.5px;line-height:1.3}
+.ev .when{color:var(--gold);font-weight:600;font-size:14px}
+.ev .meta{color:var(--muted);font-size:13.5px}
+.bingo{max-width:520px;margin:14px auto 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:10px}
+.bhead,.bgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.bhead span{text-align:center;font-family:var(--display);font-size:34px;line-height:1;color:var(--gold)}
+.bcell{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);display:grid;place-items:center;text-align:center;
+  font-size:clamp(10.5px,2.9vw,13.5px);line-height:1.2;padding:3px;cursor:pointer;overflow-wrap:break-word;transition:background .15s}
+.bcell[aria-pressed="true"]{background:radial-gradient(circle,rgba(229,73,93,.55),rgba(229,73,93,.25));border-color:var(--berry);color:#fff;font-weight:600}
+.bcell.free{background:radial-gradient(circle,rgba(242,193,78,.5),rgba(242,193,78,.18));border-color:var(--gold);font-weight:700;cursor:default}
+.bcell.win{box-shadow:0 0 0 2px var(--gold),0 0 18px -4px var(--gold)}
+.bwin{text-align:center;background:rgba(242,193,78,.14);border:1px solid var(--gold);border-radius:12px;padding:10px;font-weight:600}
+.bwin[hidden]{display:none}
+.bfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
 </style>
 
 <canvas id="snow" aria-hidden="true"></canvas>
@@ -174,13 +217,15 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
   <a class="presents" href="https://www.crabtreehomestn.com" target="_blank" rel="noopener"><img class="av" src="data:image/jpeg;base64,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" alt="Tony Crabtree" width="40" height="40"><span class="wm"><b>Tony Crabtree</b> – REALTOR <span class="sep">|</span> Crabtree Homes <span class="pr">presents</span></span></a>
   <div class="eyebrow">Murfreesboro &amp; Rutherford County · 2026</div>
   <h1>Christmas Lights <em>in the Boro</em><svg class="holly" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12C8 4 2 6 2 6s3 1 2 4c3-1 4 2 4 2s-1 3 4 0Z" fill="#46a77f"/><path d="M12 12c4-8 10-6 10-6s-3 1-2 4c-3-1-4 2-4 2s1 3-4 0Z" fill="#3a8f6b"/><circle cx="10" cy="15" r="2.6" fill="#e5495d"/><circle cx="14" cy="15.5" r="2.6" fill="#e5495d"/><circle cx="12" cy="18.6" r="2.6" fill="#c93a4d"/></svg></h1>
-  <p class="sub">Every house on the list, with turn-by-turn directions and ready-made driving loops. Tap a light on the map, or pick a route and go.</p>
+  <p class="sub">Every house on the list, with turn-by-turn directions and ready-made driving loops. Tap a light on the map, pick a ready-made loop, or build your own trip.</p>
   <div class="stats" id="stats"></div>
 </header>
 
 <nav class="tabs" aria-label="Views">
   <button class="tab" id="tabMap" aria-pressed="true">Map &amp; list</button>
   <button class="tab" id="tabTop" aria-pressed="false">★ Top rated</button>
+  <button class="tab" id="tabEv" aria-pressed="false">Events</button>
+  <button class="tab" id="tabBingo" aria-pressed="false">Bingo</button>
 </nav>
 <section id="viewMap">
 <div class="mapcard">
@@ -194,6 +239,7 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
   <div class="maplegend"><span><svg width="14" height="16" viewBox="-8 -13 16 26" aria-hidden="true"><path d="M1.2,-11 L1.2,5.2 M1.2,-11 C4,-8 8.5,-7.5 7,-1.5" fill="none" stroke="#f2c14e" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="-2.6" cy="5.6" rx="4.4" ry="3.3" transform="rotate(-22 -2.6 5.6)" fill="#f2c14e"/></svg> Music show</span><span><svg width="12" height="16" viewBox="-7 -13 14 26" aria-hidden="true"><rect x="-3" y="-12" width="6" height="5" rx="1.2" fill="#7d8d96"/><path d="M0,-7.5 C5.5,-7.5 6.5,-2 6.5,1.5 C6.5,6 3,9.5 0,11.5 C-3,9.5 -6.5,6 -6.5,1.5 C-6.5,-2 -5.5,-7.5 0,-7.5Z" fill="#e5495d"/></svg> Light display</span><span style="opacity:.6">Faded = you've seen it</span></div>
 </div>
 
+<div class="startrow"><span class="chiplabel">Routes start from</span><span class="chips" id="starts"></span><span id="startMsg" role="status"></span></div>
 <div class="bar">
   <div class="progress"><span id="seenTxt">0 of 0 seen</span><div class="track"><div class="fill" id="fill"></div></div></div>
   <div><div class="chiplabel">Show</div><div class="chips" id="filters"></div></div>
@@ -208,6 +254,20 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
   <ol class="toplist" id="toplist"></ol>
 </section>
 
+<section id="viewEv" hidden>
+  <div class="tophead"><h2>Holiday events around the Boro</h2><p>Make a night of it. Parades, tree lightings and festivals near the lights. Times come from each organizer, so double-check before you head out.</p></div>
+  <ul class="evlist" id="evlist"></ul>
+  <p class="small" style="margin-top:12px">Know of an event we should add? Email <a href="mailto:tony@crabtreehomestn.com">tony@crabtreehomestn.com</a>.</p>
+</section>
+<section id="viewBingo" hidden>
+  <div class="tophead"><h2>Christmas Lights Bingo</h2><p>Tap a square when you spot it from the car. Get five in a row, then screenshot your card and tag <b>#borochristmas2026</b>.</p></div>
+  <div class="bingo">
+    <div class="bhead" aria-hidden="true"><span>B</span><span>I</span><span>N</span><span>G</span><span>O</span></div>
+    <div class="bgrid" id="bgrid" role="grid" aria-label="Bingo card"></div>
+    <div class="bwin" id="bwin" role="status" hidden></div>
+    <div class="bfoot"><span>Christmas Lights in the Boro · Tony Crabtree, REALTOR® · crabtreehomestn.com</span><button class="btn" id="bnew">New card</button></div>
+  </div>
+</section>
 <div class="panel">
   <div class="box">
     <h3>Vote for your favorite</h3>
@@ -258,11 +318,13 @@ footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display
 </footer>
 </div>
 
+<div class="tripbar" id="tripbar" hidden><span id="tripTxt"></span><button class="btn primary" id="tripGo">View &amp; go</button></div>
 <script>
 /* ===== DATA: the one list everything is built from ===== */
 const API="https://script.google.com/macros/s/AKfycbyzSNgTxU_FqSe_oGFf5buTR7yX4UnmajDvgz_kEYmobSp0XMeyXFsFdK17Uz8tG2Ky/exec";
 let UPDATED="";
 /* Backup copy of the list, used only if the Google Sheet can't be reached */
+let EVENTS = [{"name": "Murfreesboro Holiday Market", "when": "Sat, Nov 21", "time": "10 AM", "where": "Stones River Mall", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-11-21", "end": "2026-11-21"}, {"name": "Smyrna Christmas Tree Lighting", "when": "Tue, Nov 24", "time": "6 PM", "where": "Depot District, Smyrna", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-11-24", "end": "2026-11-24"}, {"name": "Holly Jolly Festival of Lights", "when": "Select nights, Nov 27 – Dec 23", "time": "From 5 PM", "where": "Lucky Ladd Farms, Eagleville", "cost": "$12–$16 online, more at the gate", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-11-27", "end": "2026-12-23"}, {"name": "Christmas Tree Lighting on the Square", "when": "Fri, Dec 4", "time": "6 PM · Santa photos 7:30–8:30", "where": "Historic Courthouse, Murfreesboro Public Square", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-04", "end": "2026-12-04"}, {"name": "A Charming Christmas at Cannonsburgh Village", "when": "Dec 4–5, 11–12 & 18–19", "time": "4–8 PM", "where": "312 S Front St, Murfreesboro", "cost": "$5 · ages 5 & under free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-04", "end": "2026-12-19"}, {"name": "Smyrna Christmas Parade", "when": "Sun, Dec 6", "time": "2 PM", "where": "Lowry St, Downtown Smyrna", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-06", "end": "2026-12-06"}, {"name": "Candlelight Tour of Homes", "when": "Sat, Dec 12", "time": "4–8 PM", "where": "Oaklands Mansion, 900 N Maney Ave", "cost": "$30 adults · $10 ages 6–12 · 5 & under free", "link": "https://www.oaklandsmansion.org/candlelighttour/", "start": "2026-12-12", "end": "2026-12-12"}, {"name": "Murfreesboro Christmas Parade: \"A Country Christmas\"", "when": "Sun, Dec 13", "time": "2 PM", "where": "E. Main St from MTSU to the Square", "cost": "Free", "link": "https://www.wgnsradio.com/article/101618/murfreesboro-christmas-parade-2pm-sun-dec-13-2026", "start": "2026-12-13", "end": "2026-12-13"}, {"name": "Christmas at Patterson", "when": "Fri, Dec 18 & Sat, Dec 19", "time": "Fri 6 PM · Sat 4 PM", "where": "Patterson Park Community Center, 521 Dr. MLK Jr. Blvd.", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-18", "end": "2026-12-19"}];
 const FALLBACK = [
  ["107 Cannock Ct","Murfreesboro","37129",35.98643,-86.40647,"s","Far North","","","2026-11-26"],
  ["5107 Reagan Dr","Murfreesboro","37129",35.93563,-86.39179,"s","Far North","","","2026-11-23"],
@@ -324,17 +386,42 @@ const saveSeen=()=>{try{localStorage.setItem("boro-seen",JSON.stringify([...seen
 
 let filter="all", zone=null, selected=null;
 
-/* route order: start at the stop closest to the square, then nearest-next */
-function orderZone(z){
-  const pts=H.filter(h=>h.zone===z); if(!pts.length) return [];
-  let cur=pts.reduce((a,b)=>dist(a,SQUARE)<dist(b,SQUARE)?a:b), out=[cur], left=pts.filter(p=>p!==cur);
+/* where routes start: the Square, or the visitor's location */
+let here=null; // {lat,lng} once they tap "My location"
+const startPt=()=>here||SQUARE;
+const miles=(a,b)=>dist(a,b)*69;
+/* route order: start at the stop closest to the start point, then nearest-next */
+function orderStops(pts){
+  if(!pts.length) return [];
+  const o=startPt();
+  let cur=pts.reduce((a,b)=>dist(a,o)<dist(b,o)?a:b), out=[cur], left=pts.filter(p=>p!==cur);
   while(left.length){const n=left.reduce((a,b)=>dist(cur,a)<dist(cur,b)?a:b);out.push(n);left=left.filter(p=>p!==n);cur=n}
   return out;
 }
-function routeURL(stops){
-  const last=stops[stops.length-1], way=stops.slice(0,-1).slice(0,9);
-  return `https://www.google.com/maps/dir/?api=1&destination=${enc(last.full)}&waypoints=${way.map(s=>enc(s.full)).join("%7C")}&travelmode=driving`;
+const orderZone=z=>orderStops(z==="trip"?H.filter(h=>trip.has(h.key)):H.filter(h=>h.zone===z));
+/* rough drive time: straight-line miles x road factor, slower in town, plus ~3 min to enjoy each stop */
+function eta(stops){
+  let mi=0,min=0,prev=startPt();
+  stops.forEach(s=>{const m=miles(prev,s);mi+=m*1.3;min+=m<3?m*1.35/25*60:m*1.25/40*60;prev=s});
+  const drive=Math.max(5,Math.round(min/5)*5), total=Math.round((min+stops.length*3)/5)*5;
+  return {mi:Math.round(mi),drive,total};
 }
+const hm=m=>m<60?`${m} min`:`${Math.floor(m/60)} hr${m%60?` ${m%60} min`:""}`;
+/* Google Maps on phones takes about 3 stops in between, so long routes open in legs of 4 houses */
+function legs(stops){
+  const out=[];
+  for(let i=0;i<stops.length;i+=4){
+    const part=stops.slice(i,i+4), last=part[part.length-1], way=part.slice(0,-1), from=i?stops[i-1]:null;
+    out.push({a:i+1,b:i+part.length,url:`https://www.google.com/maps/dir/?api=1${from?`&origin=${enc(from.full)}`:""}&destination=${enc(last.full)}${way.length?`&waypoints=${way.map(s=>enc(s.full)).join("%7C")}`:""}&travelmode=driving`});
+  }
+  return out;
+}
+
+/* ===== my trip (houses the visitor picks) ===== */
+let trip=new Set();
+try{trip=new Set(JSON.parse(localStorage.getItem("boro-trip")||"[]"))}catch(e){}
+const saveTrip=()=>{try{localStorage.setItem("boro-trip",JSON.stringify([...trip]))}catch(e){}};
+function toggleTrip(k){trip.has(k)?trip.delete(k):trip.add(k);saveTrip();if(zone==="trip"&&!trip.size)zone=null;chips();drawMap();render()}
 
 /* ===== map ===== */
 const svg=$("#map"), NS="http://www.w3.org/2000/svg";
@@ -363,7 +450,8 @@ function drawMap(){
     const t=el("text",{x,y:y+5,"text-anchor":"middle",class:"shieldtxt",fill:kind==="US"?"#14252b":"#eef3f1"},g);t.textContent=ref});
   TOWNS.forEach(t=>{const [x,y]=px(t[1],t[2]);const tx=el("text",{x,y,"text-anchor":"middle",class:"town"+(t[3]?" big":"")});tx.textContent=t[0]});
   // route line
-  if(zone){const st=orderZone(zone);el("polyline",{class:"route",points:st.map(h=>px(h.lat,h.lng).join(",")).join(" ")})}
+  if(zone){const st=orderZone(zone);el("polyline",{class:"route",points:[...(here&&here.lat<B.n&&here.lat>B.s&&here.lng>B.w&&here.lng<B.e?[here]:[]),...st].map(h=>px(h.lat,h.lng).join(",")).join(" ")})}
+  if(here&&here.lat<B.n&&here.lat>B.s&&here.lng>B.w&&here.lng<B.e){const [x,y]=px(here.lat,here.lng);el("circle",{cx:x,cy:y,r:14,fill:"#8fd3ff",opacity:.25});el("circle",{cx:x,cy:y,r:6,fill:"#8fd3ff",stroke:"#fff","stroke-width":2})}
   // pins
   H.forEach(h=>{
     const [x,y]=px(h.lat,h.lng);
@@ -388,7 +476,8 @@ function drawMap(){
   paintPins();setVB();
 }
 function visible(h){
-  if(zone && h.zone!==zone) return false;
+  if(zone==="trip"){if(!trip.has(h.key))return false}
+  else if(zone && h.zone!==zone) return false;
   if(filter==="m") return h.type==="m";
   if(filter==="s") return h.type==="s";
   if(filter==="show") return !!h.show;
@@ -397,7 +486,7 @@ function visible(h){
 }
 function paintPins(){
   svg.querySelectorAll(".pin").forEach(g=>{const h=H[+g.dataset.id];
-    g.classList.toggle("dim",!visible(h));g.classList.toggle("sel",selected===h.id);g.classList.toggle("seen",seen.has(h.key))});
+    g.classList.toggle("dim",!visible(h));g.classList.toggle("sel",selected===h.id);g.classList.toggle("seen",seen.has(h.key));g.classList.toggle("intrip",trip.has(h.key))});
 }
 function zoomTo(f,cx,cy){
   const nw=Math.min(W,Math.max(W/6,vb.w*f)), nh=nw*HH/W;
@@ -415,22 +504,24 @@ function card(h,n){
   const c=document.createElement("article");
   c.className="card"+(seen.has(h.key)?" seen":"")+(selected===h.id?" sel":"");c.id="h"+h.id;
   c.innerHTML=`<div class="top"><div class="num ${h.type}">${n}</div>
-    <div style="min-width:0">${h.name?`<div class="dname">${esc(h.name)}</div>`:""}<div class="addr">${esc(h.addr)}</div><div class="city">${esc(h.city)}, TN ${esc(h.zip)}</div></div></div>
+    <div style="min-width:0">${h.name?`<div class="dname">${esc(h.name)}</div>`:""}<div class="addr">${esc(h.addr)}</div><div class="city">${esc(h.city)}, TN ${esc(h.zip)}</div>${here?`<div class="away">${miles(here,h).toFixed(1)} mi from you</div>`:""}</div></div>
     <div class="tags">${h.start?`<span class="tag start${isOn(h)?" on":""}">${startText(h)}</span>`:""}<span class="tag ${h.type}">${typeName[h.type]}</span><span class="tag">${esc((ZONES[h.zone]||{name:h.zone}).name)}</span>${h.show?`<a class="tag show" href="${esc(h.show)}" target="_blank" rel="noopener">Show page ↗</a>`:""}</div>
     <div class="rate" role="group" aria-label="Rate ${esc(h.addr)}">${[1,2,3,4,5].map(v=>`<button class="star${(mine[h.key]||0)>=v?" on":""}" data-v="${v}" aria-label="${v} star${v>1?"s":""}" aria-pressed="${mine[h.key]===v}">★</button>`).join("")}<span class="avg">${avgText(h.key)}</span></div>
     <div class="go"><a class="btn primary" href="${gmap(h)}" target="_blank" rel="noopener">Google Maps</a>
       <a class="btn" href="${amap(h)}" target="_blank" rel="noopener">Apple Maps</a>
       <a class="btn" href="${waze(h)}" target="_blank" rel="noopener">Waze</a>
+      <button class="btn add${trip.has(h.key)?" in":""}" data-trip aria-pressed="${trip.has(h.key)}">${trip.has(h.key)?"✓ In my trip":"＋ Add to my trip"}</button>
       <label class="seenbox"><input type="checkbox" id="seen${h.id}" ${seen.has(h.key)?"checked":""}> Seen it</label></div>`;
   c.querySelectorAll(".star").forEach(b=>b.addEventListener("click",()=>rate(h.key,+b.dataset.v)));
+  c.querySelector("[data-trip]").addEventListener("click",()=>toggleTrip(h.key));
   c.querySelector("input").addEventListener("change",e=>{e.target.checked?seen.add(h.key):seen.delete(h.key);saveSeen();render()});
   c.addEventListener("mouseenter",()=>{selected=h.id;paintPins()});
   return c;
 }
 function render(){
   const list=$("#list");list.innerHTML="";
-  const items=zone?orderZone(zone):H;
-  items.filter(visible).forEach((h,i)=>list.appendChild(card(h,zone?i+1:h.id+1)));
+  const items=zone?orderZone(zone):here?[...H].sort((a,b)=>dist(a,here)-dist(b,here)):H;
+  items.filter(visible).forEach((h,i)=>list.appendChild(card(h,zone||here?i+1:h.id+1)));
   if(!list.children.length) list.innerHTML=`<p style="color:var(--muted)">${filter==="on"?"No houses are lit up yet. Most displays start the week of Thanksgiving. Tap “All houses” to see each start date.":filter==="todo"?"Nothing left here. You've seen every house in this group!":"No houses match this filter yet."}</p>`;
   // progress
   const sc=H.filter(h=>seen.has(h.key)).length;
@@ -438,12 +529,25 @@ function render(){
   $("#fill").style.width=(sc/H.length*100)+"%";
   // route box
   const rb=$("#routebox");
-  if(zone){const st=orderZone(zone);
-    rb.innerHTML=`<div class="routebox"><h3>${ZONES[zone].name}: ${st.length} stops</h3>
-    <p>Starts at the stop closest to the Square, then goes to the nearest house each time. Opens in Google Maps with every stop loaded.</p>
-    <ol>${st.map(s=>`<li>${esc(s.addr)}</li>`).join("")}</ol>
-    <div class="go"><a class="btn red" href="${routeURL(st)}" target="_blank" rel="noopener">Start this loop in Google Maps</a></div></div>`;
+  const _st=zone?orderZone(zone):[];
+  if(zone&&_st.length){const st=_st, t=eta(st), lg=legs(st), isTrip=zone==="trip", from=here?"you":"the Square";
+    rb.innerHTML=`<div class="routebox${isTrip?" trip":""}"><h3>${isTrip?"My trip":ZONES[zone].name}: ${st.length} stop${st.length>1?"s":""}</h3>
+    <div class="eta"><span>About <b>${hm(t.total)}</b> total</span><span><b>${hm(t.drive)}</b> of driving · ~${t.mi} mi from ${from}</span></div>
+    <p>Starts at the house closest to ${from}, then the nearest house each time. Total includes a few minutes at each stop.${lg.length>1?` Google Maps opens ${lg.length} legs of up to 4 houses; when you finish one, tap the next.`:""}</p>
+    ${isTrip?`<ol class="tl">${st.map((s,i)=>`<li><span class="n">${i+1}</span><span>${esc(s.name?s.name+" · ":"")}${esc(s.addr)}</span><button class="x" data-rm="${esc(s.key)}" aria-label="Remove ${esc(s.addr)}">×</button></li>`).join("")}</ol>`
+      :`<ol>${st.map(s=>`<li>${esc(s.addr)}</li>`).join("")}</ol>`}
+    <div class="legs">${lg.map((l,i)=>`<a class="btn ${i?"":"red"}" href="${l.url}" target="_blank" rel="noopener">${lg.length>1?`Leg ${i+1}: stops ${l.a}–${l.b}`:"Start in Google Maps"}</a>`).join("")}</div>
+    ${isTrip?`<div class="go"><button class="btn" id="tripShare">Copy trip link</button><button class="btn" id="tripClear">Clear trip</button><span class="small" id="tripMsg"></span></div>`:""}</div>`;
+    rb.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>toggleTrip(b.dataset.rm));
+    if(isTrip){
+      $("#tripClear").onclick=()=>{trip.clear();saveTrip();zone=null;chips();drawMap();render()};
+      $("#tripShare").onclick=async()=>{const u=location.origin+location.pathname+"?trip="+[...trip].map(enc).join(",");
+        try{await navigator.clipboard.writeText(u);$("#tripMsg").textContent="Link copied. Text it to whoever's riding along!"}catch(e){prompt("Copy this link:",u)}};
+    }
   } else rb.innerHTML="";
+  const tb=$("#tripbar");
+  if(trip.size&&zone!=="trip"&&!$("#viewMap").hidden){const t=eta(orderZone("trip"));tb.hidden=false;$("#tripTxt").innerHTML=`My trip: <b>${trip.size}</b> stop${trip.size>1?"s":""} · ~${hm(t.total)}`}
+  else tb.hidden=true;
   paintPins();
 }
 function select(id,scroll){selected=id;paintPins();document.querySelectorAll(".card").forEach(c=>c.classList.toggle("sel",c.id==="h"+id));
@@ -455,12 +559,25 @@ function chips(){
   [["all","All houses"],["m","Music shows"],["todo","Haven't seen yet"],["show","Has a show page"],["s","Static light displays"]].forEach(([k,l])=>{
     const b=document.createElement("button");b.className="chip";b.textContent=l;b.setAttribute("aria-pressed",filter===k);
     b.onclick=()=>{filter=k;chips();render()};f.appendChild(b)});
+  const st=$("#starts");st.innerHTML="";
+  [["sq","Downtown Square"],["me","📍 My location"]].forEach(([k,l])=>{const b=document.createElement("button");b.className="chip";b.textContent=l;
+    b.setAttribute("aria-pressed",k==="me"?!!here:!here);b.onclick=()=>k==="me"?locate():(here=null,$("#startMsg").textContent="",chips(),drawMap(),render());st.appendChild(b)});
   const r=$("#routes");r.innerHTML="";
   const none=document.createElement("button");none.className="chip route-chip";none.textContent="Everywhere";none.setAttribute("aria-pressed",!zone);
   none.onclick=()=>{zone=null;chips();drawMap();render()};r.appendChild(none);
+  if(trip.size){const t=document.createElement("button");t.className="chip trip-chip";t.textContent=`★ My trip (${trip.size})`;t.setAttribute("aria-pressed",zone==="trip");
+    t.onclick=()=>{zone="trip";chips();drawMap();render()};r.appendChild(t)}
   Object.entries(ZONES).forEach(([k,z])=>{const n=H.filter(h=>h.zone===k).length;if(!n)return;
     const b=document.createElement("button");b.className="chip route-chip";b.textContent=`${z.name} (${n})`;b.setAttribute("aria-pressed",zone===k);
     b.onclick=()=>{zone=k;chips();drawMap();render()};r.appendChild(b)});
+}
+function locate(){
+  const m=$("#startMsg");
+  if(!navigator.geolocation){m.textContent="Your browser can't share location.";return}
+  m.textContent="Finding you…";
+  navigator.geolocation.getCurrentPosition(p=>{here={lat:p.coords.latitude,lng:p.coords.longitude};
+    const d=miles(here,SQUARE);m.textContent=d>60?"You're a ways out! Distances are from where you are now.":"Sorted closest first.";chips();drawMap();render()},
+    ()=>{m.textContent="Location is off. Allow it in your browser settings, or start from the Square.";},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
 }
 function stats(){
   const m=H.filter(h=>h.type==="m").length,s=H.filter(h=>h.type==="s").length,u=H.length-m-s;
@@ -499,9 +616,52 @@ function renderTop(){
     <div class="go"><a class="btn primary" href="${gmap(r.h)}" target="_blank" rel="noopener">Go</a><button class="btn" data-show="${r.h.id}">On map</button></div></li>`).join("");
   ol.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{showTab("map");filter="all";zone=null;chips();drawMap();render();select(+b.dataset.show,true)});
 }
-function showTab(v){$("#viewMap").hidden=v!=="map";$("#viewTop").hidden=v!=="top";
-  $("#tabMap").setAttribute("aria-pressed",v==="map");$("#tabTop").setAttribute("aria-pressed",v==="top");if(v==="top")renderTop()}
-$("#tabMap").onclick=()=>showTab("map");$("#tabTop").onclick=()=>showTab("top");
+const TABS={map:["#viewMap","#tabMap"],top:["#viewTop","#tabTop"],ev:["#viewEv","#tabEv"],bingo:["#viewBingo","#tabBingo"]};
+function showTab(v){Object.entries(TABS).forEach(([k,[s,t]])=>{$(s).hidden=k!==v;$(t).setAttribute("aria-pressed",k===v)});
+  if(v==="top")renderTop();if(v==="ev")renderEvents();if(v==="bingo")renderBingo();render()}
+Object.entries(TABS).forEach(([k,[,t]])=>$(t).onclick=()=>showTab(k));
+$("#tripGo").onclick=()=>{zone="trip";chips();drawMap();render();$("#routebox").scrollIntoView({behavior:"smooth",block:"start"})};
+
+/* ===== events (from the Events tab of the sheet) ===== */
+function renderEvents(){
+  const today=new Date();today.setHours(0,0,0,0);
+  const d=v=>{const m=String(v||"").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);return m?new Date(+m[1],+m[2]-1,+m[3]):null};
+  const list=EVENTS.filter(e=>{const end=d(e.end)||d(e.start);return !end||end>=today}).sort((a,b)=>(d(a.start)||0)-(d(b.start)||0));
+  const ul=$("#evlist");
+  if(!list.length){ul.innerHTML=`<li class="empty">No upcoming events right now. Check back after Thanksgiving!</li>`;return}
+  ul.innerHTML=list.map(e=>{const s=d(e.start),en=d(e.end)||s,now=s&&s<=today&&en>=today;
+    return `<li class="ev${now?" now":""}">${now?`<span class="tag start on" style="justify-self:start">Happening now</span>`:""}<h3>${esc(e.name)}</h3>
+    <div class="when">${esc(e.when)}${e.time?` · ${esc(e.time)}`:""}</div>
+    <div class="meta">${esc(e.where)}${e.cost?`<br>${esc(e.cost)}`:""}</div>
+    <div class="go">${e.where?`<a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${enc(e.where+", TN")}&travelmode=driving" target="_blank" rel="noopener">Directions</a>`:""}${safeUrl(e.link)?`<a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener">Details ↗</a>`:""}</div></li>`}).join("");
+}
+
+/* ===== Christmas Lights Bingo ===== */
+const BINGO=["Blow-up snowman","Santa on the roof","A Grinch","Light-up reindeer","Nativity scene","Candy cane path","Lights dancing to music",
+ "All-blue lights","All-white lights","Rainbow lights","Light tunnel","Giant inflatable","Tree glowing in a window",
+ "Wreath on the door","Snowflake projector","Lit-up mailbox","Penguins","Nutcracker","Elf","Polar bear","Angel",
+ "Christmas train","Over-the-top house","Icicle lights","Lit-up tree trunks","Window candles","Snow globe",
+ "Santa's sleigh","Flamingo in a Santa hat","\"Santa, stop here\" sign","Someone waving","Another light-tour car",
+ "A dog in a sweater","Hot cocoa in the car","Giant lit star","Presents on the lawn","Lit-up arch","Moving figure","Matching PJs","Lit-up candy canes"];
+let bingo=null;
+try{bingo=JSON.parse(localStorage.getItem("boro-bingo")||"null")}catch(e){}
+function newCard(){const a=[...BINGO];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+  const cells=a.slice(0,24);cells.splice(12,0,"FREE");bingo={cells,marked:[12]};saveBingo()}
+const saveBingo=()=>{try{localStorage.setItem("boro-bingo",JSON.stringify(bingo))}catch(e){}};
+const LINES=[...[0,1,2,3,4].map(r=>[0,1,2,3,4].map(c=>r*5+c)),...[0,1,2,3,4].map(c=>[0,1,2,3,4].map(r=>r*5+c)),[0,6,12,18,24],[4,8,12,16,20]];
+function renderBingo(){
+  if(!bingo||!Array.isArray(bingo.cells)||bingo.cells.length!==25)newCard();
+  const m=new Set(bingo.marked), wins=LINES.filter(l=>l.every(i=>m.has(i))), win=new Set(wins.flat());
+  const g=$("#bgrid");
+  g.innerHTML=bingo.cells.map((t,i)=>i===12?`<div class="bcell free${win.has(i)?" win":""}" role="gridcell">⭐ FREE</div>`
+    :`<button class="bcell${win.has(i)?" win":""}" role="gridcell" aria-pressed="${m.has(i)}" data-i="${i}">${esc(t)}</button>`).join("");
+  g.querySelectorAll("button").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;m.has(i)?m.delete(i):m.add(i);bingo.marked=[...m];saveBingo();renderBingo()});
+  const w=$("#bwin");
+  if(m.size===25){w.hidden=false;w.innerHTML="🎄 BLACKOUT! You spotted everything. Screenshot this and tag <b>#borochristmas2026</b>!"}
+  else if(wins.length){w.hidden=false;w.innerHTML=`🎉 BINGO${wins.length>1?` ×${wins.length}`:""}! Screenshot your card and tag <b>#borochristmas2026</b>. Keep going for a blackout!`}
+  else w.hidden=true;
+}
+$("#bnew").onclick=()=>{if(bingo&&bingo.marked.length>1&&!confirm("Start a new card? This clears your marks."))return;newCard();renderBingo()};
 
 /* ===== lead form ===== */
 $("#leadForm").addEventListener("submit",async e=>{
@@ -515,15 +675,20 @@ $("#leadForm").addEventListener("submit",async e=>{
 });
 
 /* ===== load from the sheet ===== */
-function boot(){stats();chips();drawMap();render();renderTop();}
+function boot(){stats();chips();drawMap();render();renderTop();if(!$("#viewEv").hidden)renderEvents();}
 setHouses(FALLBACK);
+/* a shared trip link: ?trip=key1,key2 */
+(()=>{const q=new URLSearchParams(location.search).get("trip");if(!q)return;
+  trip=new Set(q.split(",").map(decodeURIComponent).filter(Boolean));saveTrip();zone="trip";})();
 fetch(API).then(r=>r.json()).then(j=>{
   if(!j.ok||!j.houses||!j.houses.length) return;
   serverTotals=j.totals||{};
+  if(Array.isArray(j.events))EVENTS=j.events;
   try{UPDATED=new Date(j.updated).toLocaleDateString("en-US",{month:"short",day:"numeric"})}catch(e){}
   const sel=selected!=null&&H[selected]?H[selected].key:null;
   setHouses(j.houses); selected=sel?(H.find(h=>h.key===sel)||{}).id??null:null;
-  if(zone&&!H.some(h=>h.zone===zone))zone=null;
+  if(zone&&zone!=="trip"&&!H.some(h=>h.zone===zone))zone=null;
+  if(zone==="trip"&&!H.some(h=>trip.has(h.key)))zone=null;
   boot();
 }).catch(()=>{});
 
@@ -531,7 +696,7 @@ fetch(API).then(r=>r.json()).then(j=>{
 const x=c.getContext("2d");let W,H,f=[];const R=()=>{W=c.width=innerWidth;H=c.height=innerHeight;f=Array.from({length:Math.round(W*H/22000)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.5,s:Math.random()*.4+.15,d:Math.random()*Math.PI*2}))};
 R();addEventListener("resize",R);(function t(){x.clearRect(0,0,W,H);x.fillStyle="#eef3f1";f.forEach(p=>{p.y+=p.s;p.d+=.01;p.x+=Math.sin(p.d)*.25;if(p.y>H){p.y=-3;p.x=Math.random()*W}x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});requestAnimationFrame(t)})()})();
 addEventListener("resize",()=>setVB());setVB();boot();
-if(location.hash==="#top")showTab("top");
+{const t={"#top":"top","#events":"ev","#bingo":"bingo"}[location.hash];if(t)showTab(t);}
 </script>
 
 </body>
