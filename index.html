@@ -321,18 +321,34 @@ let UPDATED="";
 /* Backup copy of the list, used only if the Google Sheet can't be reached */
 let EVENTS = [{"name": "Murfreesboro Holiday Market", "when": "Sat, Nov 21", "time": "10 AM", "where": "Stones River Mall", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-11-21", "end": "2026-11-21"}, {"name": "Smyrna Christmas Tree Lighting", "when": "Tue, Nov 24", "time": "6 PM", "where": "Depot District, Smyrna", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-11-24", "end": "2026-11-24"}, {"name": "Holly Jolly Festival of Lights", "when": "Select nights, Nov 27 – Dec 23", "time": "From 5 PM", "where": "Lucky Ladd Farms, Eagleville", "cost": "$12–$16 online, more at the gate", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-11-27", "end": "2026-12-23"}, {"name": "Christmas Tree Lighting on the Square", "when": "Fri, Dec 4", "time": "6 PM · Santa photos 7:30–8:30", "where": "Historic Courthouse, Murfreesboro Public Square", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-04", "end": "2026-12-04"}, {"name": "A Charming Christmas at Cannonsburgh Village", "when": "Dec 4–5, 11–12 & 18–19", "time": "4–8 PM", "where": "312 S Front St, Murfreesboro", "cost": "$5 · ages 5 & under free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-04", "end": "2026-12-19"}, {"name": "Smyrna Christmas Parade", "when": "Sun, Dec 6", "time": "2 PM", "where": "Lowry St, Downtown Smyrna", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-06", "end": "2026-12-06"}, {"name": "Candlelight Tour of Homes", "when": "Sat, Dec 12", "time": "4–8 PM", "where": "Oaklands Mansion, 900 N Maney Ave", "cost": "$30 adults · $10 ages 6–12 · 5 & under free", "link": "https://www.oaklandsmansion.org/candlelighttour/", "start": "2026-12-12", "end": "2026-12-12"}, {"name": "Murfreesboro Christmas Parade: \"A Country Christmas\"", "when": "Sun, Dec 13", "time": "2 PM", "where": "E. Main St from MTSU to the Square", "cost": "Free", "link": "https://www.wgnsradio.com/article/101618/murfreesboro-christmas-parade-2pm-sun-dec-13-2026", "start": "2026-12-13", "end": "2026-12-13"}, {"name": "Christmas at Patterson", "when": "Fri, Dec 18 & Sat, Dec 19", "time": "Fri 6 PM · Sat 4 PM", "where": "Patterson Park Community Center, 521 Dr. MLK Jr. Blvd.", "cost": "Free", "link": "https://onlyinmurfreesboro.com/christmas-events-murfreesboro/", "start": "2026-12-18", "end": "2026-12-19"}];
 const FALLBACK = [
- ["107 Cannock Ct","Murfreesboro","37129",35.98643,-86.40647,"s","Far North","","","2026-11-26"],
- ["5107 Reagan Dr","Murfreesboro","37129",35.93563,-86.39179,"s","Far North","","","2026-11-23"],
- ["515 Spinnaker Ct","Smyrna","37167",35.97182,-86.54309,"m","West","","","2026-11-28"],
- ["602 Glen Valley Trl","Smyrna","37167",35.95599,-86.53279,"m","West","Grinch Christmas","","2026-11-23"],
- ["3031 Fallswood Dr","Murfreesboro","37129",35.90761,-86.41841,"m","North","Primm Springs Sun-Thurs End at 9pm","","2026-11-27"],
- ["2332 Londonderry Dr","Murfreesboro","37129",35.89243,-86.43112,"s","North","","","2026-12-01"],
- ["1629 Drayton Dr","Murfreesboro","37130",35.88902,-86.35547,"s","East","","","2026-12-01"],
- ["218 Stockton Dr","Murfreesboro","37128",35.80081,-86.42447,"s","Southwest","","","2026-11-26"],
- ["2459 Vanlawn Ln","Christiana","37037",35.74051,-86.46666,"s","South","","","2026-11-26"],
- ["1009 Stratus Dr","Murfreesboro","37127",35.75196,-86.31732,"m","South","","","2026-12-01"],
- ["6527 Forrest Ln","Murfreesboro","37129",35.934,-86.490,"m","","","","2026-11-27"],
- ["1737 Marian Ln","Murfreesboro","37130",35.894,-86.355,"m","","","","2026-11-26"]
+ ["7922 Spire St", "Murfreesboro", "37129", 35.99019, -86.40647, "s", "Far North", "", "", "2026-11-15"],
+ ["107 Cannock Ct", "Murfreesboro", "37129", 35.98643, -86.40647, "s", "Far North", "", "", "2026-11-26"],
+ ["5107 Reagan Dr", "Murfreesboro", "37129", 35.93563, -86.39179, "s", "Far North", "", "", "2026-11-23"],
+ ["515 Spinnaker Ct", "Smyrna", "37167", 35.97182, -86.54309, "m", "West", "", "", "2026-11-28"],
+ ["602 Glen Valley Trl", "Smyrna", "37167", 35.95599, -86.53279, "m", "West", "Grinch Christmas", "", "2026-11-23"],
+ ["1516 Neutrino Dr", "Murfreesboro", "37129", 35.88988, -86.5591, "s", "West", "Character Christmas", "", "2026-11-26"],
+ ["2050 Sugartree Dr", "Murfreesboro", "37129", 35.87909, -86.5167, "m", "West", "", "", "2026-11-26"],
+ ["3031 Fallswood Dr", "Murfreesboro", "37129", 35.90761, -86.41841, "m", "North", "Primm Springs Sun-Thurs End at 9pm", "", "2026-11-27"],
+ ["2332 Londonderry Dr", "Murfreesboro", "37129", 35.89243, -86.43112, "s", "North", "", "", "2026-12-01"],
+ ["841 Lexi Ln", "Murfreesboro", "37130", 35.90193, -86.36271, "m", "North", "", "", "2026-11-26"],
+ ["1184 Ithaca St", "Murfreesboro", "37130", 35.89568, -86.36398, "m", "North", "Vivid Lightscapes", "https://www.facebook.com/VLXmasShow", "2026-11-27"],
+ ["1127 Newberry Dr", "Murfreesboro", "37130", 35.89942, -86.35138, "m", "East", "", "93.1 FM", "2026-12-06"],
+ ["1629 Drayton Dr", "Murfreesboro", "37130", 35.88902, -86.35547, "s", "East", "", "", "2026-12-01"],
+ ["2119 Patriot Dr", "Murfreesboro", "37130", 35.88192, -86.35557, "s", "East", "", "", "2026-11-26"],
+ ["1920 Higgins Ln", "Murfreesboro", "37130", 35.87298, -86.3505, "s", "East", "", "", "2026-12-06"],
+ ["1115 Mahogany Trl", "Murfreesboro", "37130", 35.86242, -86.34209, "m", "East", "", "", "2026-11-20"],
+ ["3172 Winfield Ct", "Murfreesboro", "37129", 35.87655, -86.4572, "m", "Southwest", "", "https://youtube.com/@wcken2", "2026-11-27"],
+ ["3908 Regiment Pl", "Murfreesboro", "37128", 35.86245, -86.46728, "m", "Southwest", "", "", "2026-11-27"],
+ ["1438 Trotters Ln", "Rockvale", "37153", 35.81243, -86.49639, "s", "Southwest", "Lights on Trotters", "https://www.facebook.com/p/Lights-on-Trotters-100077115561233/", "2026-11-21"],
+ ["110 Slidell Ct", "Rockvale", "37153", 35.79877, -86.50265, "s", "Southwest", "", "", "2026-11-27"],
+ ["218 Stockton Dr", "Murfreesboro", "37128", 35.80081, -86.42447, "s", "Southwest", "", "", "2026-11-26"],
+ ["2459 Vanlawn Ln", "Christiana", "37037", 35.74051, -86.46666, "s", "South", "", "", "2026-11-26"],
+ ["648 Laurel Ln", "Murfreesboro", "37127", 35.73447, -86.39507, "s", "South", "", "", "2026-11-23"],
+ ["1009 Stratus Dr", "Murfreesboro", "37127", 35.75196, -86.31732, "m", "South", "", "", "2026-12-01"],
+ ["103 Gateway Dr", "Murfreesboro", "37127", 35.78053, -86.3208, "s", "South", "", "", "2026-11-29"],
+ ["416 Bell Buckle Wartrace Rd", "Bell Buckle", "37020", 35.57535, -86.3572, "m", "Worth the drive", "", "101.3 FM", "2026-11-26"],
+ ["6527 Forrest Ln", "Murfreesboro", "37129", 35.9343197, -86.4904812, "m", "West", "", "", "2026-11-27"],
+ ["1737 Marian Ln", "Murfreesboro", "37130", 35.8936758, -86.3550813, "m", "East", "", "https://llol.remotefalcon.com/remote-falcon", "2026-11-26"]
 ].map(r=>({addr:r[0],city:r[1],zip:r[2],lat:r[3],lng:r[4],type:r[5],area:r[6],name:r[7],show:r[8],start:r[9]}));
 let H=[];
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
@@ -671,12 +687,17 @@ $("#leadForm").addEventListener("submit",async e=>{
 
 /* ===== load from the sheet ===== */
 function boot(){stats();chips();drawMap();render();renderTop();if(!$("#viewEv").hidden)renderEvents();}
-setHouses(FALLBACK);
+/* show the newest list right away: last copy this browser saw, else the built-in copy */
+let CACHE=null;try{CACHE=JSON.parse(localStorage.getItem("boro-cache")||"null")}catch(e){}
+if(CACHE&&Array.isArray(CACHE.houses)&&CACHE.houses.length){setHouses(CACHE.houses);serverTotals=CACHE.totals||{};if(Array.isArray(CACHE.events))EVENTS=CACHE.events;
+  try{UPDATED=new Date(CACHE.updated).toLocaleDateString("en-US",{month:"short",day:"numeric"})}catch(e){}}
+else setHouses(FALLBACK);
 /* a shared trip link: ?trip=key1,key2 */
 (()=>{const q=new URLSearchParams(location.search).get("trip");if(!q)return;
   trip=new Set(q.split(",").map(decodeURIComponent).filter(Boolean));saveTrip();zone="trip";})();
 fetch(API).then(r=>r.json()).then(j=>{
   if(!j.ok||!j.houses||!j.houses.length) return;
+  try{localStorage.setItem("boro-cache",JSON.stringify({houses:j.houses,totals:j.totals,events:j.events,updated:j.updated}))}catch(e){}
   serverTotals=j.totals||{};
   if(Array.isArray(j.events))EVENTS=j.events;
   try{UPDATED=new Date(j.updated).toLocaleDateString("en-US",{month:"short",day:"numeric"})}catch(e){}
