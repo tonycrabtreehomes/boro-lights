@@ -333,7 +333,7 @@ const FALLBACK = [
  ["2332 Londonderry Dr", "Murfreesboro", "37129", 35.89243, -86.43112, "s", "North", "", "", "2026-12-01"],
  ["822 Sandra Dr","Murfreesboro","37130",35.90544,-86.35915,"m","North","","",""],
  ["841 Lexi Ln", "Murfreesboro", "37130", 35.90193, -86.36271, "m", "North", "", "", "2026-11-26"],
- ["1184 Ithaca St", "Murfreesboro", "37130", 35.89568, -86.36398, "m", "North", "Vivid Lightscapes", "https://www.facebook.com/VLXmasShow", "2026-11-27"],
+ ["1184 Ithaca St", "Murfreesboro", "37130", 35.89568, -86.36398, "m", "North", "Vivid Lightscapes", "https://vividlightscapes.com/lightshow", "2026-11-27"],
  ["1127 Newberry Dr", "Murfreesboro", "37130", 35.89942, -86.35138, "m", "East", "", "93.1 FM", "2026-12-06"],
  ["1629 Drayton Dr", "Murfreesboro", "37130", 35.88902, -86.35547, "s", "East", "", "", "2026-12-01"],
  ["2119 Patriot Dr", "Murfreesboro", "37130", 35.88192, -86.35557, "s", "East", "", "", "2026-11-26"],
@@ -354,7 +354,7 @@ const FALLBACK = [
 ].map(r=>({addr:r[0],city:r[1],zip:r[2],lat:r[3],lng:r[4],type:r[5],area:r[6],name:r[7],show:r[8],start:r[9]}));
 let H=[];
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
-const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"";
+const safeUrl=u=>{if(!/^https?:\/\//i.test(u||""))return "";try{const x=new URL(u);[...x.searchParams.keys()].forEach(k=>{if(/^(fbclid|gclid|igshid|mibextid|utm_)/i.test(k))x.searchParams.delete(k)});return x.toString()}catch(e){return u}};
 function setHouses(list){
   H=list.filter(h=>isFinite(h.lat)&&isFinite(h.lng)).map((h,i)=>({id:i,key:(h.addr+"-"+h.zip).toLowerCase().replace(/[^a-z0-9]+/g,"-"),
     addr:h.addr,city:h.city,zip:String(h.zip),lat:+h.lat,lng:+h.lng,type:h.type==="m"?"m":"s",zone:h.area||"",show:safeUrl(h.show),name:h.name||"",
