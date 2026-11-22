@@ -350,7 +350,7 @@ const FALLBACK = [
  ["2459 Vanlawn Ln", "Christiana", "37037", 35.74051, -86.46666, "s", "South", "", "", "2026-11-26"],
  ["229 Applewood Ln", "Murfreesboro", "37127", 35.74965, -86.40102, "m", "South", "", "", "2026-11-23"],
  ["648 Laurel Ln", "Murfreesboro", "37127", 35.73447, -86.39507, "s", "South", "", "", "2026-11-23"],
- ["1009 Stratus Dr", "Murfreesboro", "37127", 35.75196, -86.31732, "m", "South", "", "", "2026-12-01"],
+ ["1009 Stratus Dr", "Murfreesboro", "37127", 35.75196, -86.31732, "m", "South", "", "", "11/27-12/25"],
  ["103 Gateway Dr", "Murfreesboro", "37127", 35.78053, -86.3208, "s", "South", "", "", "2026-11-29"],
  ["416 Bell Buckle Wartrace Rd", "Bell Buckle", "37020", 35.57535, -86.3572, "m", "Worth the drive", "", "101.3 FM", "2026-11-26"],
  ["6527 Forrest Ln", "Murfreesboro", "37129", 35.9343197, -86.4904812, "m", "West", "", "", "2026-11-27"],
@@ -381,7 +381,9 @@ const ZONES = {
 function startDate(v){if(!v)return null;let m=String(v).match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);if(m)return new Date(+m[1],+m[2]-1,+m[3]);
   m=String(v).match(/^(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/);if(m){const y=m[3]?(+m[3]<100?2000+ +m[3]:+m[3]):new Date().getFullYear();return new Date(y,+m[1]-1,+m[2])}return null}
 const isOn=h=>{const d=startDate(h.start);if(!d)return true;const t=new Date();t.setHours(0,0,0,0);return d<=t};
-function startText(h){const d=startDate(h.start);if(!d)return "";const f=d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});return isOn(h)?`On now · since ${d.toLocaleDateString("en-US",{month:"short",day:"numeric"})}`:`Lights on ${f}`}
+function endDate(v){const m=String(v||"").match(/[-–]\s*(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\s*$/);if(!m)return null;const y=m[3]?(+m[3]<100?2000+ +m[3]:+m[3]):new Date().getFullYear();return new Date(y,+m[1]-1,+m[2])}
+function startText(h){const d=startDate(h.start);if(!d)return "";const e=endDate(h.start),md=x=>x.toLocaleDateString("en-US",{month:"short",day:"numeric"});const f=d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
+  if(isOn(h))return e?`On now · through ${md(e)}`:`On now · since ${md(d)}`;return e?`Lights ${md(d)} – ${md(e)}`:`Lights on ${f}`}
 const TOWNS=[["Murfreesboro",35.8456,-86.3903,1],["Smyrna",35.9828,-86.5186],["Rockvale",35.7600,-86.5300],["Christiana",35.7092,-86.3989],
  ["Lascassas",35.9260,-86.3090],["Walter Hill",35.9450,-86.4000],["Blackman",35.8700,-86.4850]];
 const SQUARE={lat:35.8456,lng:-86.3903};
