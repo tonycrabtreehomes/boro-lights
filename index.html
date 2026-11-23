@@ -717,7 +717,7 @@ fetch(API).then(r=>r.json()).then(j=>{
 }).catch(()=>{});
 
 (function(){const c=document.getElementById("snow");if(!c||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-const x=c.getContext("2d");let W,H,f=[];const R=()=>{W=c.width=innerWidth;H=c.height=innerHeight;f=Array.from({length:Math.round(W*H/3200)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.2+.6,s:Math.random()*.4+.15,d:Math.random()*Math.PI*2}))};
+const x=c.getContext("2d");let W,H,f=[];const R=()=>{W=c.width=innerWidth;H=c.height=innerHeight;f=Array.from({length:Math.round(W*H/4800)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.2+.6,s:Math.random()*.4+.15,d:Math.random()*Math.PI*2}))};
 R();addEventListener("resize",R);(function t(){x.clearRect(0,0,W,H);x.fillStyle="#eef3f1";f.forEach(p=>{p.y+=p.s;p.d+=.01;p.x+=Math.sin(p.d)*.25;if(p.y>H){p.y=-3;p.x=Math.random()*W}x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});requestAnimationFrame(t)})()})();
 addEventListener("resize",()=>setVB());setVB();boot();
 {const t={"#top":"top","#events":"ev","#bingo":"bingo"}[location.hash];if(t)showTab(t);}
